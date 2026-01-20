@@ -2,7 +2,6 @@ import os
 import yaml
 import cv2
 from pathlib import Path
-from tqdm import tqdm
 
 def verify_dataset(data_yaml_path):
     """
@@ -18,7 +17,7 @@ def verify_dataset(data_yaml_path):
         'test': dataset_root / data_config.get('test', 'test/images')
     }
 
-    print(f"🚀 Starting verification for dataset at: {dataset_root}")
+    print(f"Starting verification for dataset at: {dataset_root}")
     
     overall_stats = {
         'total_images': 0,
@@ -31,11 +30,11 @@ def verify_dataset(data_yaml_path):
 
     for split_name, image_dir in splits.items():
         if not image_dir.exists():
-            print(f"⚠️ Warning: Split '{split_name}' directory not found: {image_dir}")
+            print(f"Warning: Split '{split_name}' directory not found: {image_dir}")
             continue
 
         label_dir = image_dir.parent / 'labels'
-        print(f"\n🔍 Checking split: {split_name} (Images: {image_dir}, Labels: {label_dir})")
+        print(f"\nChecking split: {split_name} (Images: {image_dir}, Labels: {label_dir})")
 
         image_files = list(image_dir.glob('*'))
         image_files = [f for f in image_files if f.suffix.lower() in ['.jpg', '.jpeg', '.png', '.bmp']]
@@ -94,11 +93,11 @@ def verify_dataset(data_yaml_path):
                 overall_stats['invalid_labels'].append(f"{label_path} (Error: {str(e)})")
                 split_stats['invalid'] += 1
 
-        print(f"✅ {split_name} Summary: {split_stats['images']} images, {split_stats['labels']} labels, {split_stats['missing']} missing, {split_stats['invalid']} invalid.")
+        print(f"[OK] {split_name} Summary: {split_stats['images']} images, {split_stats['labels']} labels, {split_stats['missing']} missing, {split_stats['invalid']} invalid.")
 
     # Final Report
     print("\n" + "="*50)
-    print("📊 DATASET VERIFICATION REPORT")
+    print("DATASET VERIFICATION REPORT")
     print("="*50)
     print(f"Total Images Checked:  {overall_stats['total_images']}")
     print(f"Total Labels Found:    {overall_stats['total_labels']}")
@@ -106,21 +105,22 @@ def verify_dataset(data_yaml_path):
     print(f"Missing Labels:        {len(overall_stats['missing_labels'])}")
     print(f"Invalid Label Format:  {len(overall_stats['invalid_labels'])}")
     
-    print("\n🎯 Class Distribution:")
+    print("\nClass Distribution:")
     for cls_id, count in overall_stats['class_distribution'].items():
         name = data_config['names'].get(cls_id, f"Unknown({cls_id})")
         print(f"  - Class {cls_id} ({name}): {count} occurrences")
 
     if overall_stats['missing_labels'] or overall_stats['invalid_labels'] or overall_stats['corrupt_images']:
-        print("\n❌ VERIFICATION FAILED: Issues found. Please check logs.")
+        print("\nVERIFICATION FAILED: Issues found. Please check logs.")
         if overall_stats['missing_labels']:
             print(f"First 5 missing labels: {overall_stats['missing_labels'][:5]}")
         if overall_stats['invalid_labels']:
             print(f"First 5 invalid labels: {overall_stats['invalid_labels'][:5]}")
     else:
-        print("\n✨ VERIFICATION PASSED: Dataset is clean and ready for Stage-1 training!")
+        print("\nVerification Passed: Dataset is clean and ready for Stage-1 training!")
     print("="*50)
 
 if __name__ == "__main__":
+    # Use relative path if possible or full path
     DATA_YAML = r"e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\data.yaml"
     verify_dataset(DATA_YAML)

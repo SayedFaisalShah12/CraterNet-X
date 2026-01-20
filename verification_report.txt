@@ -1,0 +1,28 @@
+﻿Starting verification for dataset at: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters
+
+Checking split: train (Images: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\train\images, Labels: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\train\labels)
+Verifying 98 images in train...
+[OK] train Summary: 98 images, 98 labels, 0 missing, 0 invalid.
+
+Checking split: val (Images: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\valid\images, Labels: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\valid\labels)
+Verifying 26 images in val...
+[OK] val Summary: 26 images, 26 labels, 0 missing, 0 invalid.
+
+Checking split: test (Images: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\test\images, Labels: e:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\test\labels)
+Verifying 19 images in test...
+[OK] test Summary: 19 images, 19 labels, 0 missing, 0 invalid.
+
+==================================================
+DATASET VERIFICATION REPORT
+==================================================
+Total Images Checked:  143
+Total Labels Found:    143
+Corrupt Images:        0
+Missing Labels:        0
+Invalid Label Format:  0
+
+Class Distribution:
+  - Class 0 (crater): 1034 occurrences
+
+Verification Passed: Dataset is clean and ready for Stage-1 training!
+==================================================
