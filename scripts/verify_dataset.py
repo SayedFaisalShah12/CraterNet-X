@@ -47,7 +47,10 @@ def verify_dataset(data_yaml_path):
             'invalid': 0
         }
 
-        for img_path in tqdm(image_files, desc=f"Verifying {split_name}"):
+        print(f"Verifying {len(image_files)} images in {split_name}...")
+        for i, img_path in enumerate(image_files):
+            if (i + 1) % 100 == 0:
+                print(f"  Processed {i+1}/{len(image_files)} images...")
             overall_stats['total_images'] += 1
             
             # 1. Check if image is corrupt
