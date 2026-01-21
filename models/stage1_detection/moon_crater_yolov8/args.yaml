@@ -1,7 +1,7 @@
 task: detect
 mode: train
 model: yolov8n.pt
-data: E:\Artificial Intelligence\Z-Projects\CraterNet-X\data\moon\craters\data.yaml
+data: /content/CraterNet-X/data/moon/craters/data.yaml
 epochs: 25
 time: null
 patience: 100
@@ -10,9 +10,9 @@ imgsz: 640
 save: true
 save_period: -1
 cache: false
-device: cpu
+device: '0'
 workers: 8
-project: E:\Artificial Intelligence\Z-Projects\CraterNet-X\models\stage1_detection
+project: /content/CraterNet-X/models/stage1_detection
 name: moon_crater_yolov8
 exist_ok: true
 pretrained: true
@@ -105,4 +105,4 @@ auto_augment: randaugment
 erasing: 0.4
 cfg: null
 tracker: botsort.yaml
-save_dir: E:\Artificial Intelligence\Z-Projects\CraterNet-X\models\stage1_detection\moon_crater_yolov8
+save_dir: /content/CraterNet-X/models/stage1_detection/moon_crater_yolov8
