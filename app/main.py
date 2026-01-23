@@ -40,7 +40,7 @@ if pipeline is None:
     st.info(f"Expected Classifier: {CLS_MODEL}")
 else:
     st.sidebar.header("Settings")
-    conf_threshold = st.sidebar.slider("Detection Confidence", 0.1, 1.0, 0.25)
+    conf_threshold = st.sidebar.slider("Detection Confidence", 0.05, 1.0, 0.15)
     
     uploaded_file = st.file_uploader("Upload a Moon Surface Image...", type=["jpg", "jpeg", "png"])
 
