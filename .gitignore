@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Kaggle API
+kaggle.json
+
+# Local sensitive files
+.env
+.antigravity/
+
+# Large Model Weights (uncomment if you don't want to push them)
+# models/
+# *.pt
+# *.weights
+# *.h5
+
+# Application temp files
+app/temp/
+debug_output.txt
+verification_report.log
+verification_report.txt
+
+# OS File
+.DS_Store
+Thumbs.db

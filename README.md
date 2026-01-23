@@ -1,76 +1,95 @@
-# CraterNet-X: Automated Lunar Crater Analysis
+# 🌑 CraterNet-X: Automated Planetary Analysis Pipeline
 
-CraterNet-X is a research-grade, two-stage deep learning pipeline designed for the automated detection and classification of craters on the Moon's surface using satellite imagery.
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![YOLOv8](https://img.shields.io/badge/Detection-YOLOv8-red)](https://github.com/ultralytics/ultralytics)
+[![ResNet-50](https://img.shields.io/badge/Classification-ResNet--50-green)](https://pytorch.org/hub/pytorch_vision_resnet/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## 🚀 System Architecture
+CraterNet-X is a high-performance, two-stage deep learning pipeline designed for the autonomous detection and morphological classification of planetary craters using satellite imagery. This research-grade tool currently supports **Lunar** analysis, with infrastructure ready for **Martian** expansion.
 
-The pipeline consists of two distinct stages:
+---
 
-1.  **Stage 1: Detection (YOLOv8)**
-    - Utilizes YOLOv8 (Nano) for high-speed, accurate detection of crater locations.
-    - Trained on the "Martian & Lunar Crater Detection Dataset" (Moon subset).
-    - Outputs bounding boxes for each detected crater.
+## 🚀 Key Features
 
-2.  **Stage 2: Classification (ResNet-50)**
-    - Automatically crops detected craters from the source imagery.
-    - Uses a ResNet-50 CNN to categorize each crater into one of three size classes:
-        - **Small** (Normalized size < 0.05)
-        - **Medium** (0.05 <= size < 0.10)
-        - **Large** (size >= 0.10)
+- **Precision Detection**: Leverages YOLOv8-Nano trained on normalized lunar datasets.
+- **Size Classification**: Stage-2 ResNet-50 architecture categorizes craters into *Small*, *Medium*, and *Large* with high fidelity.
+- **Interactive Dashboard**: Streamlit-powered interface for real-time inference and report generation.
+- **Dataset Verification**: Built-in scripts to validate label integrity and class distribution.
+
+---
+
+## 🏗️ System Architecture
+
+The pipeline follows a modular **Detection-then-Classification** strategy:
+
+1.  **Stage 1 (Detection)**: Input imagery is scanned by YOLOv8. Bounding boxes are localized and extracted.
+2.  **Stage 2 (Classification)**: Extracted crops are normalized and passed through a ResNet-50 CNN to determine the crater's size class based on morphology and relative area.
+
+---
 
 ## 📁 Project Structure
 
 ```text
 CraterNet-X/
-├── app/                    # Streamlit Demo Application
-├── data/                   # Dataset storage (Moon & Classification crops)
-├── evaluation/             # Evaluation scripts and visualization results
-├── inference/              # Core inference pipeline (CraterNetX class)
-├── models/                 # Trained model weights (.pt)
-├── scripts/                # Utility scripts (verification, cropping, analysis)
-├── training/               # Training scripts for YOLOv8 and ResNet-50
-├── requirments.txt         # Project dependencies
-└── README.md               # Project documentation
+├── app/                    # Interactive Streamlit Application
+├── data/                   # Dataset management (Moon/Mars)
+├── inference/              # Core pipeline (Predict & Visualize)
+├── models/                 # Trained weights and model definitions
+├── scripts/                # Data preparation & debugging utilities
+├── training/               # Stage-1 and Stage-2 training scripts
+├── requirements.txt         # Project dependencies
+└── README.md               # Documentation
 ```
 
-## 🛠️ Getting Started
+---
 
-### 1. Prerequisites
-- Python 3.10+
-- PyTorch (with CUDA support recommended)
-- `pip install -r requirments.txt`
+## 🛠️ Installation & Setup
 
-### 2. Dataset Verification
-Ensure your dataset is correctly formatted and clean:
+### 1. Environment Preparation
+```bash
+git clone https://github.com/SayedFaisalShah12/CraterNet-X
+cd CraterNet-X
+pip install -r requirements.txt
+```
+
+### 2. Dataset Integration
+Place your `kaggle.json` in the root directory. Use the provided Jupyter notebook `CraterNetX_Colab.ipynb` for cloud training or use local scripts:
 ```bash
 python scripts/verify_dataset.py
 ```
 
-### 3. Training
-**Stage 1 (Detection):**
+### 3. Pipeline Execution
+**Train Detection (Stage 1):**
 ```bash
 python training/train_yolov8.py
 ```
 
-**Prepare Classification Data:**
+**Generate Classification Crops:**
 ```bash
 python scripts/crop_craters.py
 ```
 
-**Stage 2 (Classification):**
+**Train Classification (Stage 2):**
 ```bash
 python training/train_classifier.py
 ```
 
-### 4. Running the Demo
-Launch the interactive Streamlit dashboard:
+---
+
+## 📊 Evaluation & Results
+
+The system integrates visualization tools in the `evaluation/` directory. Use the **CraterNet-X Interactive Dashboard** for a professional presentation of results:
+
 ```bash
 streamlit run app/main.py
 ```
 
-## 📊 Methodology & Research
-This project follows a modular research approach. Each stage is independently verifiable. Classification thresholds were determined by analyzing the statistical distribution of the crater sizes in the training set (found in `scripts/analyze_sizes.py`).
+---
 
 ## 📜 License
-This project is licensed under the MIT License.
-```
+Published under the **MIT License**. See `LICENSE` for more details.
+
+## 🤝 Contributing
+Contributions for Martian dataset integration and multi-spectral imagery support are welcome. 
+
+Developed by **Sayed Faisal Shah**
